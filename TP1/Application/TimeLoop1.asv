@@ -10,7 +10,7 @@ function [y, u, tempsTotal] = TimeLoop1(x0, u0, T, dt)
         if(y(i) < 6399)
             break
         end
-        if(y(i) > 6699)
+        if(y(i) > 7800)
             break
         end
         [y(i+1), u(i+1)] = Evol1(y(i), u(i), dt);
@@ -20,7 +20,7 @@ function [y, u, tempsTotal] = TimeLoop1(x0, u0, T, dt)
         tempsTotal(i+1) = tempsTotal(i) + dt;
         i = i + 1;
     end
-    if(y(i) > 6699 ) %Si on attend l'orbite (ce n'est que pour représenter la mise en orbite sur le graphe).
+    if(y(i) > 7800 ) %Si on attend l'orbite (ce n'est que pour représenter la mise en orbite sur le graphe).
         for j = i:2*i
             tempsTotal(j+1) = tempsTotal(j) + dt;
             y(j+1) = y(j);

@@ -8,6 +8,8 @@ for i = 1:10
 end
 semilogy(k,err);
 title('err : f(x) = x/2');
+xlabel('nombre iteration k');
+ylabel('erreur');
 hold on
 
 figure(2);
@@ -17,6 +19,8 @@ for i = 1:10
 end
 semilogy(k,err);
 title('err : f(x) = 2*x');
+xlabel('nombre iteration k');
+ylabel('erreur');
 hold on
 
 clear k; clear err;
@@ -26,7 +30,9 @@ for i = 1:10
     [x, k(i), err(i)] = Newton(@fonction3, @df3, 1, 1.e-50, i);
 end
 semilogy(k,err);
-title('err : x² - 1/2');
+xlabel('nombre iteration k');
+ylabel('erreur');
+title('err : x^2 - 1/2');
 hold on
 
 % clear k; clear err;
