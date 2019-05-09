@@ -3,7 +3,7 @@ close all;
 clc;
 temps = 200;
 
-[y1, u1, time1] = TimeLoop1(7400, 0, temps, 0.1);
+[y1, u1, time1] = TimeLoop(7400, 0, temps, 0.1);
 
 figure(1);
 plot(time1, y1);

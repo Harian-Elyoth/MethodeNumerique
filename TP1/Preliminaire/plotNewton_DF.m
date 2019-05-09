@@ -1,5 +1,10 @@
 close all; clear all;
+
 clc;
+
+%Figure 1 et 2 representent l'erreur sur des fonctions linéaire, elles ne
+%sont donc pas nécéssaire.
+
 % 
 % figure(1);
 % 

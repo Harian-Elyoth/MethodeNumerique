@@ -1,6 +1,9 @@
 close all; clear all;
 clc;
 
+%La figure 1 et 2 representent l'erreur des fonctions linéaires, elle ne
+%sont donc pas nécéssaires
+
 % figure(1);
 % 
 % for i = 1:10
@@ -21,7 +24,7 @@ clc;
 % hold on
 % 
 % clear k; clear err;
-% figure(3);
+figure(3);
 
 for i = 1:25
     [x, k(i), err(i)] = Newton_S(@fonction3, 1, 1.e-16, i);

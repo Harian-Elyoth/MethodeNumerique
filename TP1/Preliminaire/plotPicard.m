@@ -3,7 +3,7 @@ close all; clear all;
 
 figure(1);
 
-    for i = 1:500
+    for i = 1:500 %Le i de la boucle for sert a regler le kmax.
         [x1, k1(i), err1(i)] = Descente(@fonction1, 0.1, 1, 1.e-16, i);
         [x2, k2(i), err2(i)] = Descente(@fonction1, 0.2, 1, 1.e-16, i);
         [x3, k3(i), err3(i)] = Descente(@fonction1, 0.3, 1, 1.e-16, i);
