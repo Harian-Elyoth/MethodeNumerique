@@ -1,0 +1,12 @@
+function X = MatVec(A, I, J, B)
+    N = size(B, 1);
+    X = zeros(1, N);
+    temp = 1;
+
+    for i = 1:N
+        while(I(temp, 1) == (i-1) && (temp <= (N-1)))
+            X(i, 1) = X(i, 1) + A(temp, 1) * B(J(temp, 1) + 1, 1);
+            temp = temp + 1;
+        end
+    end
+end

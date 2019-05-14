@@ -1,4 +1,4 @@
-function [X, err1, k] = GradientsConjugues(X0, prodA, B, tol, kmax)
+function [X, err, k] = GradientsConjugues(X0, prodA, B, tol, kmax)
 
     X = X0;
     err0 = prodA(X) - B;
@@ -17,8 +17,6 @@ function [X, err1, k] = GradientsConjugues(X0, prodA, B, tol, kmax)
         D = err1 + prod_scal(beta, D);
         
         k = k + 1;
-        
-        err0 = err1;
         
     end
     
