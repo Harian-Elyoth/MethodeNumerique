@@ -1,7 +1,17 @@
-function [x, u] = Evol(x0, u0, dt)
-    G = 6,674 * 10^(-11);
-    mT = 5,972 * 10^24;
-    x = x0 + dt*(u0 + dt* -(G*mT)/x0*x0); %Ici, j'utilise la force de la position précédente, le pas étant généralement 
-    %très petit, je peux négliger l'erreur DANS LE CADRE DE CE TP.
-    u = (x - x0)/dt;
+% Fonction qui renvoie la position x de la fusee apres un temps dt
+% Elle prend en parametre la position initiale de la fusee x0 et le temps dt
+% ainsi que la vitesse initiale u0
+
+
+function [x] = Evol(x0, dt, u0)
+    
+    kmax = 1000;
+    eps = 1.e-10;
+    h = 1.e-8;
+    
+    x = Newton_DF_Fusee(@Position, @df_DF_Fusee, x0 ,eps, kmax, h, u0, dt);
+   
+    
+
 end
+

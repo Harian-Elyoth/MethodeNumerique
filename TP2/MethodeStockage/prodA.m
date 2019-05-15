@@ -9,6 +9,11 @@ function Y = prodA(X) %fait l'opération A * X
         Y(1, 1) = 3*X(1, 1) - X(2, 1);
     else 
         Y(1, 1) = 3*X(1, 1);
+    end
+    if(N == 2)
+        Y(2, 1) = - X(1, 1) + 3 * X(2, 1);
+    end
+    
     if(N > 2)
         for i = 2:(N-1)
             Y(i, 1) = - X(i-1, 1) + 3 * X(i, 1) - X(i+1, 1);

@@ -1,28 +1,25 @@
-function [X, err1, k] = GradientsConjuguesCSR(AX, AI, AJ, X0, B, tol, kmax)
+function [X, err, k] = GradientsConjuguesCSR(AX, AI, AJ, X0, B, tol, kmax)
 
     X = X0;
-    err0 = MatVecCSR(AX, AI, AJ, X) - B;
-    D = err0;
+    err = MatVecCSR(AX, AI, AJ, X) - B;
+    D = err;
     k = 0;
-    while(prod_scal(err0, err0) > tol)
+    N2 = prod_scal(err, err);
+    while( sqrt(N2) > tol && k < kmax)
         
-        alpha = prod_scal(err0', err0)/prod_scal(D', MatVecCSR(AX, AI, AJ, D));
-        
-        X = X + alpha*D;
-        
-        err1 = err0 - alpha*MatVecCSR(AX, AI, AJ, D);
-
-        beta = prod_scal(err1', err1)/(prod_scal(err0', err0));
-        
-        D = err1 + prod_scal(beta, D);
-        
+        AD = MatVecCSR(AX, AI, AJ, D);
+        p = N2/prod_scal(D, AD);
+        X = X - p*D;
+        err = err - p*AD;
+        temp = N2;
+        N2 = prod_scal(err, err);
+        alpha = N2 / temp;
+        D = err - alpha*D;
         k = k + 1;
-        
-        err0 = err1;
         
     end
     
-    if (k > kmax)
+    if (k == kmax)
         warning('La fonction diverge');
     end
 end

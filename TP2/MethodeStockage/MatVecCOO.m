@@ -11,4 +11,5 @@ function X = MatVecCOO(A, I, J, B)
             end
         end
     end
+    X = X'
 end

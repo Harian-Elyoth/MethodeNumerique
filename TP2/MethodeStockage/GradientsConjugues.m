@@ -1,28 +1,25 @@
-function [X, err1, k] = GradientsConjugues(X0, prodA, B, tol, kmax)
+function [X, err, k] = GradientsConjugues(X0, prodA, B, tol, kmax)
 
     X = X0;
-    err0 = prodA(X) - B;
-    D = err0;
+    err = prodA(X) - B;
+    D = err;
     k = 0;
-    while(prod_scal(err0, err0) > tol)
+    N2 = prod_scal(err, err);
+    while( sqrt(N2) > tol && k < kmax)
         
-        alpha = prod_scal(err0', err0)/prod_scal(D', prodA(D));
-        
-        X = X + alpha*D;
-        
-        err1 = err0 - alpha*prodA(D);
-
-        beta = prod_scal(err1', err1)/(prod_scal(err0', err0));
-        
-        D = err1 + prod_scal(beta, D);
-        
+        AD = prodA(D);
+        p = N2/prod_scal(D, AD);
+        X = X - p*D;
+        err = err - p*AD;
+        temp = N2;
+        N2 = prod_scal(err, err);
+        alpha = N2 / temp;
+        D = err - alpha*D;
         k = k + 1;
-        
-        err0 = err1;
         
     end
     
-    if (k > kmax)
+    if (k == kmax)
         warning('La fonction diverge');
     end
 end

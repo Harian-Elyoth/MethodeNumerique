@@ -1,4 +1,4 @@
-function X = MatVecCRS(A, I, J, B)
+function X = MatVecCSR(A, I, J, B)
     N = size(B, 1);
     X = zeros(1, N);
     
@@ -14,11 +14,12 @@ function X = MatVecCRS(A, I, J, B)
             end    
         else 
             temp = I(i, 1)+1; 
-        while((temp) <= I(i + 1, 1))
-            X(1, i) = X(1, i) + A(temp, 1)*B(J(temp, 1) + 1, 1);
-            temp = temp + 1;
-        
+            while((temp) <= I(i + 1, 1))
+                X(1, i) = X(1, i) + A(temp, 1)*B(J(temp, 1) + 1, 1);
+                temp = temp + 1;
+
+            end
         end
-        
     end
+    X = X';
 end
