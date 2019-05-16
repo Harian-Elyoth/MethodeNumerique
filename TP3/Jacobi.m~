@@ -1,0 +1,28 @@
+function [X, err, k] = Jacobi(A, X0, B, tol, kmax)
+   
+X = X0;
+taille = size(B);
+Serr = zeros(taille);
+k = 0;
+err = zeros(taille);
+for i = 1:taille
+    for j = 1:taille
+        Serr(i, 1) = Serr(i, 1) + A(i, j)*X0(j, 1);
+    end
+    err(i) = Serr(i, 1);
+end
+N2 = prod_scal(err, err);
+
+while ((sqrt(N2) > tol) && (k < kmax))
+    err = A*X - B;
+    X = prodMN(A, X, B);    
+    N2 = prod_scal(err, err);
+    k = k + 1;
+    
+end
+if(k == kmax)
+    warning('La fonction diverge');
+end
+err = N2;
+end
+            
