@@ -1,0 +1,19 @@
+function [J] = Jacobian(X, O)
+%X = xc yc a b phi
+%O = x y teta
+i = 1;
+j = 1;
+while(i <= 2*size(O, 2))
+    J(i, 1) = 1;
+    J(i, 2) = 0;
+    J(i, 3) = cos(X(5, 1))*cos(O(3, j));
+    J(i, 4) = sin(X(5, 1))*sin(O(3, j));
+    J(i, 5) = -X(3, 1)*sin(X(5, 1))*cos(O(3, j))-X(4, 1)*cos(X(5, 1))*sin(O(3, j));
+    J(i+1, 1) = 0;
+    J(i+1, 2) = 1;
+    J(i+1, 3) = sin(X(5, 1))*cos(O(3, j));
+    J(i+1, 4) = cos(X(5, 1))*sin(O(3, j));
+    J(i+1, 5) = X(3, 1)*sin(X(5, 1))*cos(O(3, j))-X(4, 1)*sin(X(5, 1))*sin(O(3, j));
+    i = i + 2;
+    j = j+1;
+end
